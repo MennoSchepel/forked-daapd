@@ -58,7 +58,7 @@ jobs:
     - name: Configure forked-daapd
       run: |
         autoreconf -fi
-        ./configure --enable-chromecast --enable-lastfm --with-pulseaudio
+        ./configure --enable-chromecast --enable-lastfm --with-pulseaudio --enable-spotify
 
     - name: Build forked-daapd
       run: |
