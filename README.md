@@ -1,5 +1,7 @@
 # forked-daapd
 
+Just for testing
+
 forked-daapd is a Linux/FreeBSD DAAP (iTunes), MPD (Music Player Daemon) and
 RSP (Roku) media server.
 
