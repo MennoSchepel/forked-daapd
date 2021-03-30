@@ -24,7 +24,7 @@ jobs:
         cd libinotify-kqueue
         autoreconf -fvi
         ./configure
-        make -B
+        make
         sudo make install
         cd ..
 
@@ -68,7 +68,14 @@ jobs:
         export LD_LIBRARY_PATH=$(brew --prefix openssl)/lib
         export CPATH=$(brew --prefix openssl)/include
         export PKG_CONFIG_PATH=$(brew --prefix openssl)/lib/pkgconfig
-        make -B
+        make
 
     - name: Install forked-daapd
       run: sudo make install
+      
+    - name: reinstall
+      run: |
+        autoreconf -fi
+        ./configure --enable-chromecast --enable-lastfm --with-pulseaudio --enable-spotify
+        make
+        sudo make install
