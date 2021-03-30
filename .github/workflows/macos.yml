@@ -35,8 +35,9 @@ jobs:
         tar xzf sqlite-autoconf-3310100.tar.gz
         cd sqlite-autoconf-3310100
         export CFLAGS='-DSQLITE_ENABLE_UNLOCK_NOTIFY=1'
+        autoreconf -fi
         ./configure
-        make -B
+        make
         sudo make install
         cd ..
 
