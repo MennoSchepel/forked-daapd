@@ -13,9 +13,14 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    
+    - name: cleanup brew
+      run: brew uninstall libunistring libmxml confuse libplist sqlite libwebsockets libevent |
+          libgcrypt json-c protobuf-c libsodium gnutls pulseaudio mopidy/mopidy/libspotify |
+          ffmpeg gperf automake autoconf libtool pkg-config
 
     - name: Install build tools
-      run: brew reinstall automake autoconf libtool pkg-config
+      run: brew install automake autoconf libtool pkg-config
 
     - name: Install libinotify-kqueue
       # brew does not have libinotify package
@@ -42,7 +47,7 @@ jobs:
 
     - name: Install gperf and antlr3
       run: |
-        brew reinstall gperf
+        brew install gperf
         chmod +x ./scripts/antlr35_install.sh
         ./scripts/antlr35_install.sh -y -p /usr/local
 
@@ -50,10 +55,10 @@ jobs:
       # The libbluray ffmpeg dependency fails without the chown (source: stackoverflow)
       run: |
         sudo chown -R $(whoami) $(brew --prefix)/*
-        brew reinstall ffmpeg
+        brew install ffmpeg
 
     - name: Install other dependencies
-      run: brew reinstall libunistring libmxml confuse libplist sqlite libwebsockets libevent libgcrypt json-c protobuf-c libsodium gnutls pulseaudio mopidy/mopidy/libspotify
+      run: brew install libunistring libmxml confuse libplist sqlite libwebsockets libevent libgcrypt json-c protobuf-c libsodium gnutls pulseaudio mopidy/mopidy/libspotify
 
     - name: Configure forked-daapd
       run: |
