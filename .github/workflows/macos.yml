@@ -16,8 +16,9 @@ jobs:
     
     - name: cleanup brew
       run: brew uninstall libunistring libmxml confuse libplist sqlite libwebsockets libevent |
-          libgcrypt json-c protobuf-c libsodium gnutls pulseaudio mopidy/mopidy/libspotify |
-          ffmpeg gperf automake autoconf libtool pkg-config
+           brew uninstall libgcrypt json-c protobuf-c libsodium gnutls pulseaudio mopidy/mopidy/libspotify |
+           brew uninstall ffmpeg |
+           brew uninstall gperf automake autoconf libtool pkg-config
 
     - name: Install build tools
       run: brew install automake autoconf libtool pkg-config
